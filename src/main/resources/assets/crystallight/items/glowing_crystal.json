@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "crystallight:block/glowing_crystal"
+  }
+}
