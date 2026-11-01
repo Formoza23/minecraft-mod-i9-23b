@@ -2,7 +2,7 @@
 	"schemaVersion": 1,
 	"id": "crystallight",
 	"version": "${version}",
-	"name": "CrystalLight",
+	"name": "glowing_crystal",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
 		"Me!"

@@ -22,6 +22,7 @@ public class ModBlocks {
                         .registryKey(key)
                         .strength(3.0f, 6.0f)
                         .luminance(state -> 8)
+                        .requiresTool()
         );
 
         return Registry.register(Registries.BLOCK, key, block);
