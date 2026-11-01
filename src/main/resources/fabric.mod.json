@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "crystallight",
+	"version": "${version}",
+	"name": "CrystalLight",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/crystallight/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"ru.college.i923b.CrystalLight"
+		],
+		"client": [
+			"ru.college.i923b.client.CrystalLightClient"
+		]
+	},
+	"mixins": [
+		"crystallight.mixins.json",
+		{
+			"config": "crystallight.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~1.21.10",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
