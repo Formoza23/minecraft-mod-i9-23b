@@ -2,6 +2,13 @@ package ru.college.i923b;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.event.player.UseBlockCallback;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.block.BlockState;
+import net.minecraft.item.ItemGroups;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 
 import org.slf4j.Logger;
@@ -18,6 +25,25 @@ public class CrystalLight implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModBlocks.initialize();
+		ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS)
+				.register(entries -> entries.add(ModBlocks.GLOWING_CRYSTAL_ITEM));
+		UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
+			if (hand != Hand.MAIN_HAND || player.isSneaking()) {
+				return ActionResult.PASS;
+			}
+
+			BlockState state = world.getBlockState(hitResult.getBlockPos());
+			if (!state.isOf(ModBlocks.GLOWING_CRYSTAL)) {
+				return ActionResult.PASS;
+			}
+
+			if (!world.isClient()) {
+				player.sendMessage(
+						Text.literal("Светящийся кристалл тихо мерцает."), true);
+			}
+			return ActionResult.SUCCESS;
+		});
+
 
 		LOGGER.info("Проект загружен успешно");
 	}
